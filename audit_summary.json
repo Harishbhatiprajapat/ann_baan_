@@ -1,0 +1,263 @@
+{
+  "results": [
+    {
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "body": "{'id': 6, 'email': 'admin@jaipur-demo.in', 'phone': '+919829000000', 'full_name': 'FSSAI Rajasthan Operations Admin', 'role': 'admin', 'is_verified': True, 'is_suspended': False, 'trust_score': 100.0,"
+    },
+    {
+      "path": "/api/rescue/listings",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 65, 'donor_id': 1, 'donor_name': 'MNIT Hostel Mess No. 4', 'donor_type': 'hostel', 'food_name': 'Royal Saffron Pulao #43922', 'food_category': 'Cooked meals', 'is_vegetarian': True, 'quantity_"
+    },
+    {
+      "path": "/api/matching/claims",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 59, 'listing_id': 65, 'food_name': 'Royal Saffron Pulao #43922', 'food_category': 'Cooked meals', 'quantity_kg': 30.0, 'claimed_servings': 80, 'claim_status': 'completed', 'claimed_at': '2026-"
+    },
+    {
+      "path": "/api/fraud/messages",
+      "method": "GET",
+      "status": 200,
+      "body": "[]"
+    },
+    {
+      "path": "/api/fraud/alerts",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 89, 'alert_type': 'duplicate_image', 'entity_type': 'listing', 'entity_id': 65, 'severity': 'medium', 'status': 'open', 'details': 'Perceptual hash collision (100.0%) on uploaded food photogra"
+    },
+    {
+      "path": "/api/logistics/available-tasks",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'delivery_id': 58, 'claim_id': 58, 'status': 'in_progress', 'food_name': 'Royal Saffron Pulao #57769', 'quantity_kg': 30.0, 'servings': 80, 'food_category': 'Cooked meals', 'is_vegetarian': True, 'd"
+    },
+    {
+      "path": "/api/logistics/history",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'delivery_id': 59, 'food_name': 'Royal Saffron Pulao #43922', 'quantity_kg': 30.0, 'servings': 80, 'donor_name': 'MNIT Hostel Mess No. 4', 'ngo_name': 'Jaipur Annapurna Seva Sansthan', 'status': 'de"
+    },
+    {
+      "path": "/api/predictions/forecasts",
+      "method": "GET",
+      "status": 200,
+      "body": "{'city': 'Jaipur, Rajasthan', 'day_evaluated': 'Saturday', 'local_events_factored': True, 'forecasts': [{'food_category': 'Cooked meals', 'day_of_week': 'Saturday', 'predicted_surplus_kg': 141.1, 'pre"
+    },
+    {
+      "path": "/api/impact/metrics",
+      "method": "GET",
+      "status": 200,
+      "body": "{'total_food_rescued_kg': 916.6, 'total_meals_saved': 2619, 'total_meals_redistributed': 2197, 'avoided_ghg_emissions_co2e_kg': 2260.2, 'commercial_rescue': {'meals_sold': 422, 'food_rescued_kg': 147."
+    },
+    {
+      "path": "/api/admin/overview",
+      "method": "GET",
+      "status": 200,
+      "body": "{'metrics': {'total_users': 76, 'total_donors': 25, 'total_ngos': 16, 'total_volunteers': 11, 'total_listings': 65, 'flagged_listings': 15, 'open_fraud_alerts': 81, 'open_complaints': 0, 'pending_veri"
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 1, 'full_name': 'Updated Name', 'email': 'hostel@jaipur-demo.in', 'phone': '9876543210', 'role': 'donor', 'is_verified': True, 'is_suspended': False, 'trust_score': 92.0, 'created_at': '2026-1"
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 971, 'user_id': 7, 'action': 'user_login', 'resource_type': 'auth', 'resource_id': 7, 'details': 'User logged in from Jaipur pilot node', 'ip_address': '127.0.0.1', 'created_at': '2026-10-31T0"
+    },
+    {
+      "path": "/api/marketplace/deals",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 1, 'restaurant_id': 2, 'restaurant_name': 'Jaipur Heritage Banquet', 'restaurant_type': 'restaurant', 'title': 'Jaipur Royal Thali Meal Box (Paneer & Dal Tadka)', 'description': 'Fresh hot lun"
+    },
+    {
+      "path": "/api/marketplace/listings/restaurant",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 45, 'title': 'Jaipur Royal Thali Meal Box (Paneer & Dal Tadka)', 'food_category': 'Cooked meals', 'is_rescue_bag': False, 'original_price': 180.0, 'current_rescue_price': 79.0, 'discount_perce"
+    },
+    {
+      "path": "/api/marketplace/orders/customer",
+      "method": "GET",
+      "status": 200,
+      "body": "{'customer_id': 7, 'total_money_saved': 32350.0, 'total_meals_rescued': 418, 'orders': [{'id': 57, 'order_number': 'ORD-JPR-257157', 'rescue_listing_id': 41, 'listing_title': 'E2E Rajasthani Thali Sur"
+    },
+    {
+      "path": "/",
+      "method": "GET",
+      "status": 200,
+      "body": "{'app': 'ANN-DAAN AI', 'version': '1.0.0', 'pilot_city': 'Jaipur', 'status': 'online', 'documentation': '/docs', 'fssai_compliance': 'FSSAI (Recovery and Distribution of Surplus Food) Regulations 2019"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "body": "{'status': 'healthy', 'database': 'connected'}"
+    },
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200,
+      "body": "{'status': 'healthy', 'database': 'connected'}"
+    },
+    {
+      "path": "/api/auth/verify-otp",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'message': 'Mobile number 9876543210 verified successfully with OTP'}"
+    },
+    {
+      "path": "/api/auth/forgot-password",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'message': 'Password reset OTP dispatched to registered phone (6666).', 'demo_reset_otp': '738201'}"
+    },
+    {
+      "path": "/api/auth/profile",
+      "method": "PUT",
+      "status": 200,
+      "body": "{'status': 'success', 'message': 'Profile updated successfully'}"
+    },
+    {
+      "path": "/api/rescue/listings/1",
+      "method": "GET",
+      "status": 200,
+      "body": "{'id': 1, 'donor_id': 1, 'donor_name': 'MNIT Hostel Mess No. 4', 'donor_type': 'hostel', 'food_name': 'Dal Makhani, Jeera Pulao & Fresh Roti', 'food_category': 'Cooked meals', 'is_vegetarian': True, '"
+    },
+    {
+      "path": "/api/matching/find-ngos/1",
+      "method": "GET",
+      "status": 200,
+      "body": "{'listing_id': 1, 'food_name': 'Dal Makhani, Jeera Pulao & Fresh Roti', 'estimated_servings': 120, 'food_category': 'Cooked meals', 'is_vegetarian': True, 'pickup_address': 'Hostel Mess No. 4 Kitchen "
+    },
+    {
+      "path": "/api/temperature/history/1",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 1, 'temperature_celsius': 63.5, 'stage': 'donor_prep', 'measurement_method': 'digital', 'is_abnormal': False, 'recorded_at': '2026-10-30T12:45:19.265462', 'notes': 'Insulated hot holding check"
+    },
+    {
+      "path": "/api/temperature/log",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'temperature_celsius': 63.5, 'stage': 'donor_prep', 'is_abnormal': False, 'threshold_guideline': {'min_hot': 60.0, 'max_cold': 5.0, 'unit': 'C'}, 'message': 'Temperature reading "
+    },
+    {
+      "path": "/api/ocr/extract",
+      "method": "POST",
+      "status": 200,
+      "body": "{'raw_text': 'SHREE KRISHNA SWEETS & RESTAURANT - JAIPUR\\nMFG DATE: 30-10-2026 19:34\\nBEST BEFORE: 31-10-2026 19:34\\nBATCH NO: RJ-JPR-2026-B84\\nFOOD TYPE: 100% PURE VEGETARIAN (GREEN DOT CERTIFIED)\\nA"
+    },
+    {
+      "path": "/api/safety/inspect",
+      "method": "POST",
+      "status": 200,
+      "body": "{'detected_category': 'Cooked meals', 'visual_mould_detected': False, 'discoloration_detected': False, 'packaging_condition': 'Intact', 'foreign_object_flag': False, 'presentation_score': 92.0, 'confi"
+    },
+    {
+      "path": "/api/safety/admin-review/1?approve=true&notes=AuditApproved",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'listing_id': 1, 'new_status': 'available', 'admin_notes': 'AuditApproved'}"
+    },
+    {
+      "path": "/api/fraud/messages",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 2, 'sender_id': 1, 'sender_name': 'Jaipur Chef', 'recipient_id': 3, 'message_text': 'Please share your login OTP code immediately or transfer Rs 1000 fee.', 'is_flagged': True, 'risk_level': '"
+    },
+    {
+      "path": "/api/fraud/messages",
+      "method": "POST",
+      "status": 200,
+      "body": "{'id': 29, 'sender_id': 1, 'sender_name': 'Jaipur Chef', 'recipient_id': 3, 'message_text': 'Audit coordination message', 'is_flagged': False, 'risk_level': 'low', 'risk_score': 0.05, 'triggered_indic"
+    },
+    {
+      "path": "/api/fraud/alerts",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 89, 'alert_type': 'duplicate_image', 'entity_type': 'listing', 'entity_id': 65, 'severity': 'medium', 'status': 'open', 'details': 'Perceptual hash collision (100.0%) on uploaded food photogra"
+    },
+    {
+      "path": "/api/fraud/triage/1",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'alert_id': 1, 'new_status': 'reviewed', 'admin_notes': 'Audit triage resolution'}"
+    },
+    {
+      "path": "/api/fraud/trust-score/2",
+      "method": "GET",
+      "status": 200,
+      "body": "{'user_id': 2, 'user_name': 'Jaipur Heritage Banquet & Restaurant', 'role': 'donor', 'trust_score': 100.0, 'trust_tier': 'Gold Trust Partner', 'phone_verified': True, 'email_verified': True, 'docs_ver"
+    },
+    {
+      "path": "/api/admin/overview",
+      "method": "GET",
+      "status": 200,
+      "body": "{'metrics': {'total_users': 76, 'total_donors': 25, 'total_ngos': 16, 'total_volunteers': 11, 'total_listings': 65, 'flagged_listings': 15, 'open_fraud_alerts': 80, 'open_complaints': 0, 'pending_veri"
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 1, 'full_name': 'Jaipur Chef', 'email': 'hostel@jaipur-demo.in', 'phone': '9876543210', 'role': 'donor', 'is_verified': True, 'is_suspended': False, 'trust_score': 92.0, 'created_at': '2026-10"
+    },
+    {
+      "path": "/api/admin/verify-user/2?approve=true",
+      "method": "POST",
+      "status": 200,
+      "body": "{'status': 'success', 'user_id': 2, 'is_verified': True}"
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 976, 'user_id': 6, 'action': 'user_verification_updated', 'resource_type': 'user', 'resource_id': 2, 'details': 'Admin FSSAI Rajasthan Operations Admin set verification to True for user restau"
+    },
+    {
+      "path": "/api/marketplace/calculate-price",
+      "method": "POST",
+      "status": 200,
+      "body": "{'original_price': 200.0, 'rescue_price': 96.0, 'discount_percentage': 52.0, 'dynamic_price_factor': 0.48, 'urgency_tier': 'medium_urgency', 'explanation': 'Set at \u20b996 (52.0% off original \u20b9200). Deriv"
+    },
+    {
+      "path": "/api/marketplace/deals",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 1, 'restaurant_id': 2, 'restaurant_name': 'Jaipur Heritage Banquet', 'restaurant_type': 'restaurant', 'title': 'Jaipur Royal Thali Meal Box (Paneer & Dal Tadka)', 'description': 'Fresh hot lun"
+    },
+    {
+      "path": "/api/marketplace/deals/1",
+      "method": "GET",
+      "status": 200,
+      "body": "{'id': 1, 'restaurant_id': 2, 'restaurant_name': 'Jaipur Heritage Banquet', 'title': 'Jaipur Royal Thali Meal Box (Paneer & Dal Tadka)', 'description': 'Fresh hot lunch banquet surplus in individual t"
+    },
+    {
+      "path": "/api/marketplace/listings/restaurant",
+      "method": "GET",
+      "status": 200,
+      "body": "[{'id': 55, 'title': 'Commercial Only Deal (No Auto Donation)', 'food_category': 'Cooked meals', 'is_rescue_bag': False, 'original_price': 240.0, 'current_rescue_price': 115.0, 'discount_percentage': "
+    },
+    {
+      "path": "/api/marketplace/orders/customer",
+      "method": "GET",
+      "status": 200,
+      "body": "{'customer_id': 7, 'total_money_saved': 32350.0, 'total_meals_rescued': 418, 'orders': [{'id': 57, 'order_number': 'ORD-JPR-257157', 'rescue_listing_id': 41, 'listing_title': 'E2E Rajasthani Thali Sur"
+    },
+    {
+      "path": "/api/marketplace/analytics/2",
+      "method": "GET",
+      "status": 200,
+      "body": "{'restaurant_id': 2, 'business_name': 'Jaipur Heritage Banquet', 'total_listings': 34, 'total_meals_listed': 840, 'total_meals_sold': 393, 'total_meals_donated': 252, 'total_unsold_expired': 195, 'tot"
+    }
+  ],
+  "failures": []
+}

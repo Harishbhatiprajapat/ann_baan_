@@ -1,0 +1,212 @@
+{
+  "timestamp": "2026-10-31T02:22:33.659854",
+  "total": 29,
+  "passed": 29,
+  "failed": 0,
+  "not_tested": 0,
+  "results": [
+    {
+      "name": "1.1 Backend Health API",
+      "expected": "HTTP 200 with database: connected",
+      "actual": "HTTP 200 - {'status': 'healthy', 'database': 'connected'}",
+      "status": "PASS",
+      "evidence": "{'status': 'healthy', 'database': 'connected'}"
+    },
+    {
+      "name": "1.2 Frontend Next.js Landing Route",
+      "expected": "HTTP 200 OK",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "evidence": "Landing page rendered"
+    },
+    {
+      "name": "1.3 FastAPI Swagger OpenAPI Documentation",
+      "expected": "HTTP 200 with Swagger UI HTML",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "evidence": "Swagger UI loaded"
+    },
+    {
+      "name": "1.4 Relational Database Direct Connection",
+      "expected": "Successful SQLite query with existing records",
+      "actual": "Connected, found 38 users",
+      "status": "PASS",
+      "evidence": "user_count=38"
+    },
+    {
+      "name": "2.1 Restaurant Registration",
+      "expected": "HTTP 200 with normalized donor role & JWT",
+      "actual": "Role=donor, Token issued",
+      "status": "PASS",
+      "evidence": "UserID=39"
+    },
+    {
+      "name": "2.2 Customer Registration",
+      "expected": "HTTP 200 with customer role & JWT",
+      "actual": "Role=customer, Token issued",
+      "status": "PASS",
+      "evidence": "UserID=40"
+    },
+    {
+      "name": "2.3 NGO Registration",
+      "expected": "HTTP 200 with ngo role & JWT",
+      "actual": "Role=ngo, Token issued",
+      "status": "PASS",
+      "evidence": "UserID=41"
+    },
+    {
+      "name": "2.4 Volunteer Registration",
+      "expected": "HTTP 200 with volunteer role & JWT",
+      "actual": "Role=volunteer, Token issued",
+      "status": "PASS",
+      "evidence": "UserID=42"
+    },
+    {
+      "name": "2.5 Admin Login",
+      "expected": "HTTP 200 with admin role & JWT",
+      "actual": "Role=admin, Token issued",
+      "status": "PASS",
+      "evidence": "Admin ID=6"
+    },
+    {
+      "name": "2.6 Invalid Password Rejection",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "HTTP 401 - Incorrect email or password",
+      "status": "PASS",
+      "evidence": "{'detail': 'Incorrect email or password'}"
+    },
+    {
+      "name": "2.7 Missing Auth Credentials Rejection",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "HTTP 401 - Authentication credentials not provided",
+      "status": "PASS",
+      "evidence": "{'detail': 'Authentication credentials not provided'}"
+    },
+    {
+      "name": "2.8 Expired JWT Rejection",
+      "expected": "HTTP 401 Signature Expired",
+      "actual": "HTTP 401 - Token signature has expired. Please log in again.",
+      "status": "PASS",
+      "evidence": "{'detail': 'Token signature has expired. Please log in again.'}"
+    },
+    {
+      "name": "2.9 Manipulated JWT Secret Rejection",
+      "expected": "HTTP 401 Signature Verification Failed",
+      "actual": "HTTP 401 - Could not validate credentials",
+      "status": "PASS",
+      "evidence": "{'detail': 'Could not validate credentials'}"
+    },
+    {
+      "name": "2.10 Passwords Hashed (Non-Plaintext)",
+      "expected": "Bcrypt/salted hash in DB, no plain text",
+      "actual": "Verified 5 newly registered users: starts with $2b$",
+      "status": "PASS",
+      "evidence": "$2b$12$oaw62yp...."
+    },
+    {
+      "name": "3.1 Customer Denied Admin Overview",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403 - Access denied: Operation requires one of the following roles: admin",
+      "status": "PASS",
+      "evidence": "{'detail': 'Access denied: Operation requires one of the following roles: admin'}"
+    },
+    {
+      "name": "3.2 NGO Denied Restaurant Listing Creation",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403 - Access denied: Operation requires one of the following roles: donor, admin",
+      "status": "PASS",
+      "evidence": "{'detail': 'Access denied: Operation requires one of the following roles: donor, admin'}"
+    },
+    {
+      "name": "3.3 Volunteer Denied Admin User Roster",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403 - Access denied: Operation requires one of the following roles: admin",
+      "status": "PASS",
+      "evidence": "{'detail': 'Access denied: Operation requires one of the following roles: admin'}"
+    },
+    {
+      "name": "3.4 Cross-Restaurant Modification Blocked",
+      "expected": "HTTP 403 Forbidden on foreign listing",
+      "actual": "HTTP 403 - Forbidden: You do not have permission to modify another restaurant's listing",
+      "status": "PASS",
+      "evidence": "{'detail': \"Forbidden: You do not have permission to modify another restaurant's listing\"}"
+    },
+    {
+      "name": "3.5 Suspended User Blocked from Platform",
+      "expected": "HTTP 403 Forbidden with suspension notice",
+      "actual": "HTTP 403 - Account is suspended. Please contact Admin.",
+      "status": "PASS",
+      "evidence": "{'detail': 'Account is suspended. Please contact Admin.'}"
+    },
+    {
+      "name": "4.1 Source Code Audit for Hardcoded OTP Bypasses",
+      "expected": "Zero hardcoded bypass comparisons in frontend and backend",
+      "actual": "Zero bypass comparisons found",
+      "status": "PASS",
+      "evidence": "Verified all frontend & backend sources"
+    },
+    {
+      "name": "4.2 Volunteer Tasks API Redacts OTPs",
+      "expected": "pickup_otp and delivery_otp are null for volunteer role",
+      "actual": "Checked 2 tasks, non-demo leaks: False",
+      "status": "PASS",
+      "evidence": "Task count=2"
+    },
+    {
+      "name": "4.3 Three-Attempt OTP Failure Lockout",
+      "expected": "HTTP 400 and dispatch lockout triggered after 3 failed tries",
+      "actual": "Attempt 1: 400, Attempt 3: 400, Attempt 4 (even with valid OTP): 400 - Maximum verification attempts exceeded (3). Dispatch locked for security.",
+      "status": "PASS",
+      "evidence": "{'detail': 'Maximum verification attempts exceeded (3). Dispatch locked for security.'}"
+    },
+    {
+      "name": "4.4 One-Time OTP Use & Delivery State Transition",
+      "expected": "OTP validates first time and updates status to picked_up",
+      "actual": "Status 1=200, Status in DB=picked_up",
+      "status": "PASS",
+      "evidence": "{'status': 'picked_up', 'delivery_id': 48, 'message': 'Pickup verified successfully. Transport safely to destination.'}"
+    },
+    {
+      "name": "5.1 Foreign Key Constraint Integrity",
+      "expected": "PRAGMA foreign_key_check returns 0 violations",
+      "actual": "0 violations found",
+      "status": "PASS",
+      "evidence": "SQLite integrity confirmed"
+    },
+    {
+      "name": "5.2 User-Donor-FoodListing Relationship Joins",
+      "expected": "Valid join results across relational tables",
+      "actual": "Found 3 related donor trees",
+      "status": "PASS",
+      "evidence": "Sample: (1, 'hostel@jaipur-demo.in', 'MNIT Hostel Mess No. 4', 30)"
+    },
+    {
+      "name": "6.1 Pre-Migration Backup Snapshot",
+      "expected": "Automated pre-migration snapshot created in backups/",
+      "actual": "Created snapshot: backend\\backups\\anndaan_pre_migration_20261031_022227.db",
+      "status": "PASS",
+      "evidence": "backend\\backups\\anndaan_pre_migration_20261031_022227.db"
+    },
+    {
+      "name": "6.2 Migration Idempotency on Isolated DB",
+      "expected": "Runs multiple times without schema errors or column duplication",
+      "actual": "Columns verified: data_origin, pickup_otp_attempts",
+      "status": "PASS",
+      "evidence": "Columns count=20"
+    },
+    {
+      "name": "7.1 Cleanup Endpoint Authorization Guard",
+      "expected": "HTTP 401 for unauthenticated and HTTP 403 for customer",
+      "actual": "Unauth=401, Cust=403",
+      "status": "PASS",
+      "evidence": "Protected by require_role('admin')"
+    },
+    {
+      "name": "7.2 Test Data Purge Isolation",
+      "expected": "TEST record deleted; REAL and DEMO records preserved",
+      "actual": "Remaining: REAL=True, DEMO=True, TEST_deleted=True",
+      "status": "PASS",
+      "evidence": "{'status': 'success', 'message': 'Automated test data cleared without impacting REAL or DEMO records.', 'purged_records': {'customer_orders': 0, 'deliveries': 4, 'donation_claims': 4, 'rescue_listings': 0, 'food_listings': 4, 'users': 1}}"
+    }
+  ]
+}

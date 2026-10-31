@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-10-31T05:08:57.853386",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "id": "Test A",
+      "name": "Create Valid Commercial Deal",
+      "expected": "HTTP 200 & record created in SQLite",
+      "actual": "HTTP 200, ID=54, Rescue Price=Rs.115.0",
+      "status": "PASS",
+      "evidence": "{'status': 'success', 'listing_id': 54, 'title': \"Chef's Special Dal Baati Churma Box\", 'original_price': 240.0, 'rescue_price': 115.0, 'discount_percentage': 52.1, 'price_explanation': 'Set at \u20b9115 (52.1% off original \u20b9240). Derived from Medium Urgency (2.5 to 5 hours remaining), Cooked meals handling rules, and 15 portion inventory depth.', 'is_rescue_bag': False, 'auto_donate_unsold': True, 'message': 'Commercial rescue listing published. Dynamic pricing policy applied.'}"
+    },
+    {
+      "id": "Test B",
+      "name": "Persistence on Page Refresh (Roster Query)",
+      "expected": "Newly created deal is returned in restaurant deals query",
+      "actual": "Deal #54 present in active listings",
+      "status": "PASS",
+      "evidence": "Roster count=33"
+    },
+    {
+      "id": "Test C",
+      "name": "Database Durability Across Restarts",
+      "expected": "Record persisted in SQLite tables with active status",
+      "actual": "Status=active, OrigPrice=240.0",
+      "status": "PASS",
+      "evidence": "Persisted row: ('active', 240.0, 1)"
+    },
+    {
+      "id": "Test D",
+      "name": "Reject Negative or Zero Price",
+      "expected": "HTTP 400 or 422 validation error",
+      "actual": "HTTP 422 - [{'type': 'greater_than', 'loc': ['body', 'original_price'], 'msg': 'Input should be greater than 0', 'input': -50.0, 'ctx': {'gt': 0.0}}]",
+      "status": "PASS",
+      "evidence": "{'detail': [{'type': 'greater_than', 'loc': ['body', 'original_price'], 'msg': 'Input should be greater than 0', 'input': -50.0, 'ctx': {'gt': 0.0}}]}"
+    },
+    {
+      "id": "Test E",
+      "name": "Reject Zero or Negative Quantity",
+      "expected": "HTTP 400 or 422 validation error",
+      "actual": "HTTP 422 - [{'type': 'greater_than', 'loc': ['body', 'total_quantity'], 'msg': 'Input should be greater than 0', 'input': 0, 'ctx': {'gt': 0}}]",
+      "status": "PASS",
+      "evidence": "{'detail': [{'type': 'greater_than', 'loc': ['body', 'total_quantity'], 'msg': 'Input should be greater than 0', 'input': 0, 'ctx': {'gt': 0}}]}"
+    },
+    {
+      "id": "Test F",
+      "name": "Reject Unauthenticated Creation",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "HTTP 401 - Authentication credentials not provided",
+      "status": "PASS",
+      "evidence": "{'detail': 'Authentication credentials not provided'}"
+    },
+    {
+      "id": "Test G",
+      "name": "Reject Customer Role From Publishing Deal",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403 - Access denied: Operation requires one of the following roles: donor, admin",
+      "status": "PASS",
+      "evidence": "{'detail': 'Access denied: Operation requires one of the following roles: donor, admin'}"
+    },
+    {
+      "id": "Test H",
+      "name": "Automatic Donation Opt-In Isolation",
+      "expected": "Consent preserved accurately: Opt-in=True (eligible), Opt-out=False (not_applicable)",
+      "actual": "Opt-in #54: flag=1, status=eligible | Opt-out #55: flag=0, status=not_applicable",
+      "status": "PASS",
+      "evidence": "Consent separation confirmed"
+    },
+    {
+      "id": "Test I",
+      "name": "Marketplace Public Retrieval",
+      "expected": "Listing appears in public rescue deals feed with dynamic price",
+      "actual": "Deal #54 visible to buyers at Rs.115.0 (52.1% off)",
+      "status": "PASS",
+      "evidence": "Marketplace items=27"
+    }
+  ]
+}

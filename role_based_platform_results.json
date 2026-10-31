@@ -1,0 +1,224 @@
+{
+  "timestamp": "2026-10-31T04:37:55.000557",
+  "total": 24,
+  "passed": 24,
+  "failed": 0,
+  "results": [
+    {
+      "id": "SEC-1",
+      "role": "Security",
+      "name": "Reject Public Admin Registration",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403: Admin accounts must be provisioned securely and cannot be registered via public signup.",
+      "status": "PASS",
+      "evidence": "{'detail': 'Admin accounts must be provisioned securely and cannot be registered via public signup.'}"
+    },
+    {
+      "id": "SEC-2",
+      "role": "Security",
+      "name": "Reject Unauthenticated Request",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "HTTP 401: Authentication credentials not provided",
+      "status": "PASS",
+      "evidence": "{'detail': 'Authentication credentials not provided'}"
+    },
+    {
+      "id": "CUST-1",
+      "role": "Customer",
+      "name": "Customer Registration with Locality",
+      "expected": "HTTP 200 & JWT Token",
+      "actual": "HTTP 200, Token issued for customer_3210@jaipur-test.in",
+      "status": "PASS",
+      "evidence": "{'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NyIsInJvbGUiOiJjdXN0b21lciIsIm5hbWUiOiJEaXZ5YSBSYXRob3JlIiwiZXhwIjoxNzkzNDg4MDI4fQ.jyahgQGYDNXaaMBp0HEYBGSyn8Y70gberyB0UztMQog', 'token_type': 'bearer', 'user': {'id': 57, 'email': 'customer_3210@jaipur-test.in', 'full_name': 'Divya "
+    },
+    {
+      "id": "CUST-2",
+      "role": "Customer",
+      "name": "Customer Authentication",
+      "expected": "HTTP 200 & Valid Session",
+      "actual": "HTTP 200, Role: customer",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "CUST-3",
+      "role": "Customer",
+      "name": "RBAC: Customer Forbidden from Admin",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403: Access denied: Operation requires one of the following roles: admin",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "CUST-4",
+      "role": "Customer",
+      "name": "Browse Live Rescue Deals",
+      "expected": "HTTP 200 & active deals list",
+      "actual": "HTTP 200, Found 20 deals. Target: #46 (Stock: 18)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "CUST-5",
+      "role": "Customer",
+      "name": "Prevent Overselling",
+      "expected": "HTTP 400 (exceeds stock)",
+      "actual": "HTTP 400: Requested quantity (118) exceeds currently available stock (18)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "CUST-6",
+      "role": "Customer",
+      "name": "Order Creation & Inventory Reservation",
+      "expected": "HTTP 200, Order Reserved & OTP",
+      "actual": "HTTP 200, Order #ORD-JPR-943453, OTP: 602865",
+      "status": "PASS",
+      "evidence": "{'status': 'reserved', 'order_id': 61, 'order_number': 'ORD-JPR-943453', 'total_amount': 123.0, 'customer_savings': 157.0, 'quantity': 1, 'pickup_otp': '602865', 'payment_gateway': 'sandbox', 'message': 'Order reserved. Please complete payment within checkout window.'}"
+    },
+    {
+      "id": "CUST-7",
+      "role": "Customer",
+      "name": "Payment Sandbox Verification",
+      "expected": "HTTP 200 & Order Ready for Pickup",
+      "actual": "HTTP 200, Status: ready_for_pickup, Amount: Rs.123.0",
+      "status": "PASS",
+      "evidence": "{'status': 'success', 'order_id': 61, 'order_number': 'ORD-JPR-943453', 'order_status': 'ready_for_pickup', 'pickup_otp': '602865', 'qr_code_hash': 'QR-ORD-JPR-943453-602865', 'transaction_id': 'tx_rzp_6218857', 'amount_paid': 123.0, 'savings': 157.0, 'message': 'Payment verified! Ready for pickup a"
+    },
+    {
+      "id": "CUST-8",
+      "role": "Customer",
+      "name": "Customer Order History & OTP Tracking",
+      "expected": "Order present with status 'ready_for_pickup'",
+      "actual": "HTTP 200, Orders count: 1, Savings: Rs.157.0",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "REST-1",
+      "role": "Restaurant",
+      "name": "Restaurant Registration with FSSAI & Address",
+      "expected": "HTTP 200 & Token",
+      "actual": "HTTP 200, Restaurant profile created with FSSAI: 12224026000999",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "REST-2",
+      "role": "Restaurant",
+      "name": "Create Commercial Rescue Listing",
+      "expected": "HTTP 200 & Deal Created",
+      "actual": "HTTP 200, Listing ID #49, Rescue Price: Rs.None",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "REST-3",
+      "role": "Restaurant",
+      "name": "Create Social Food Donation for NGOs",
+      "expected": "HTTP 200 & Listing created",
+      "actual": "HTTP 200, Social Listing ID #53",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "REST-4",
+      "role": "Restaurant",
+      "name": "Customer Order Pickup Confirmation via OTP",
+      "expected": "HTTP 200 & Order Completed",
+      "actual": "HTTP 200: Pickup successfully verified! Enjoy your affordable rescue meal.",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "NGO-1",
+      "role": "NGO",
+      "name": "NGO Registration with Capacity & Address",
+      "expected": "HTTP 200 & Token",
+      "actual": "HTTP 200, Capacity: 350 meals/day",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "NGO-2",
+      "role": "NGO",
+      "name": "Discover Available Free Donations",
+      "expected": "HTTP 200 & available donations list",
+      "actual": "HTTP 200, Found 53 donations available",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "NGO-3",
+      "role": "NGO",
+      "name": "Prevent Oversubscription of Donation",
+      "expected": "HTTP 400 (exceeds servings)",
+      "actual": "HTTP 400: Claimed servings (9999) exceeds available quantity (75)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "NGO-4",
+      "role": "NGO",
+      "name": "Claim Free Donation for Beneficiaries",
+      "expected": "HTTP 200 & Claim Created",
+      "actual": "HTTP 200, Claim ID #48, Delivery OTP: 234828",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "VOL-1",
+      "role": "Volunteer",
+      "name": "Volunteer Registration with Vehicle & Locality",
+      "expected": "HTTP 200 & Token",
+      "actual": "HTTP 200, Vehicle: bike, Locality: Malviya Nagar & C-Scheme",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "VOL-2",
+      "role": "Volunteer",
+      "name": "Fetch Volunteer Delivery Tasks",
+      "expected": "HTTP 200 & Tasks Array",
+      "actual": "HTTP 200, Active Tasks: 1",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "ADM-1",
+      "role": "Admin",
+      "name": "Admin Authentication with Provisioned Account",
+      "expected": "HTTP 200 & Admin Role",
+      "actual": "HTTP 200, User: FSSAI Rajasthan Operations Admin, Role: admin",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "ADM-2",
+      "role": "Admin",
+      "name": "User Management & Verification Review",
+      "expected": "HTTP 200 & Complete User Roster",
+      "actual": "HTTP 200, Total Platform Users: 60",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "ADM-3",
+      "role": "Admin",
+      "name": "Live Platform Impact Calculation",
+      "expected": "HTTP 200 & Live Metrics",
+      "actual": "Food Rescued: 857.8 kg, Meals: 2027, CO2e Avoided: 2114.4 kg",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "id": "ADM-4",
+      "role": "Admin",
+      "name": "System Audit Logs Access",
+      "expected": "HTTP 200 & Audit Trail",
+      "actual": "HTTP 200, Audit Records: 50",
+      "status": "PASS",
+      "evidence": ""
+    }
+  ]
+}

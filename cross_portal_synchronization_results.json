@@ -1,0 +1,128 @@
+{
+  "timestamp": "2026-10-31T05:55:34.105450",
+  "total": 15,
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "step": "STEP 1",
+      "name": "Register & Authenticate Restaurant",
+      "expected": "HTTP 200 & JWT",
+      "actual": "Authenticated as sync_rest_98505@jaipur-pilot.in (User ID #72)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 2",
+      "name": "Restaurant Creates 50-Portion Donation",
+      "expected": "HTTP 200 & status='available'",
+      "actual": "Created listing #59 with status='available'",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 3",
+      "name": "Database Persistence Verification",
+      "expected": "Row in food_listings with 50 servings & 'available'",
+      "actual": "Found in SQLite: ID=59, Name='Royal Paneer Tikka Masala Feast #98505', Servings=50, Status='available'",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 4",
+      "name": "Register & Authenticate NGO",
+      "expected": "HTTP 200 & JWT",
+      "actual": "Authenticated as sync_ngo_98505@jaipur-relief.org (User ID #73)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 5",
+      "name": "NGO Discovers Newly Created Donation",
+      "expected": "Listing #{new_listing_id} with 50 portions in feed",
+      "actual": "Found donation #59 ('Royal Paneer Tikka Masala Feast #98505') with 50 portions",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 6",
+      "name": "NGO Claims 30 Portions (Inventory Decrement)",
+      "expected": "DB: 30 claimed, 20 remaining, status='available'",
+      "actual": "Claim #54 for 30 portions confirmed. Remaining in DB: 20 portions (status='available')",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 7",
+      "name": "Register & Authenticate Volunteer",
+      "expected": "HTTP 200 & JWT",
+      "actual": "Authenticated as sync_vol_98505@jaipur-dispatch.in (User ID #74)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 8",
+      "name": "Volunteer Accepts Delivery Task",
+      "expected": "HTTP 200 & status='in_progress'",
+      "actual": "Delivery #54 accepted by volunteer (Status: in_progress)",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 9",
+      "name": "Donor Handoff: Pickup Verification via OTP",
+      "expected": "HTTP 200 & status='picked_up'",
+      "actual": "Verified with OTP 900634 at 63.8\u00b0C: Pickup verified successfully. Transport safely to destination.",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 10",
+      "name": "NGO Handoff: Delivery Verification via OTP",
+      "expected": "HTTP 200 & status='delivered'",
+      "actual": "Verified with OTP 235410 at 61.5\u00b0C: Delivery completed! Beneficiary distribution records updated.",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 11",
+      "name": "Complete Cross-Portal Multi-Role Synchronization",
+      "expected": "Synchronized in Restaurant, NGO, Volunteer & Admin",
+      "actual": "Verified across all 4 role portals simultaneously",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 12A",
+      "name": "Security: Unrelated NGO Privacy",
+      "expected": "Cannot access other NGO's claims",
+      "actual": "Isolated. Zero foreign claims exposed.",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 12B",
+      "name": "Security: Foreign Restaurant Modification Blocked",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "HTTP 403: Forbidden: You do not have permission to modify another restaurant's listing",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 12C",
+      "name": "Business Rule: Prevent Oversubscription",
+      "expected": "HTTP 400 Bad Request",
+      "actual": "HTTP 400: Cannot claim food with current status 'delivered'",
+      "status": "PASS",
+      "evidence": ""
+    },
+    {
+      "step": "STEP 13",
+      "name": "SQLite Durability Verification",
+      "expected": "All states persistent in SQLite tables",
+      "actual": "Listing: ('delivered', 20), Claim: ('completed',), Delivery: ('delivered',)",
+      "status": "PASS",
+      "evidence": ""
+    }
+  ]
+}
