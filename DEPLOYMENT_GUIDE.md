@@ -105,7 +105,7 @@ On the FastAPI hosting service, set `CORS_ORIGINS` to a comma-separated list of 
 
 Deploy the backend separately from the `backend/` directory using `python -m pip install -r requirements.txt` and a host-provided command such as `uvicorn app.main:app --host 0.0.0.0 --port $PORT`. Use a persistent production database and storage service; the local SQLite database and local upload directory are not shared with Vercel.
 
-This checkout contains no `vite.config.ts`, Vite app, root `package.json`, or Vercel serverless API modules. If a deployment log tries to load `vite.config.ts` or `./api/status`, `./api/transactions`, or `./api/chatHandler`, verify the Vercel Git repository/branch and change its Root Directory to `frontend`; those imports do not exist in this ANN-DAAN AI checkout.
+This checkout contains no `vite.config.ts`, Vite app, root `package.json`, or Vercel serverless API modules. If a deployment log tries to load `vite.config.ts` or `./api/status`, `./api/traffic`, or `./api/chat`, verify that Vercel is connected to this ANN-DAAN AI repository and branch and change its Root Directory to `frontend`; those imports do not exist in this checkout. Status/health and chat behavior are handled by the separately deployed FastAPI backend (`/health` and `/api/fraud/messages`). No traffic API exists in this application.
 
 ### Production Database Setup
 1. Update `.env`:
