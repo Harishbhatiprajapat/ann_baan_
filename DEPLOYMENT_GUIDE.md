@@ -110,7 +110,7 @@ This checkout contains no `vite.config.ts`, Vite app, root `package.json`, or Ve
 ### Production Database Setup
 1. Update `.env`:
    ```bash
-   DATABASE_URL="postgresql://user:password@db-host:5432/anndaan_production"
+   DATABASE_URL="******db-host:5432/anndaan_production"
    ```
 2. Install PostgreSQL adapter:
    ```bash
